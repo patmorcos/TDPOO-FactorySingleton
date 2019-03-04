@@ -14,6 +14,18 @@ public final class ProductFactory {
         registry.put(name,p);
     }
 
+    public static ProductFactory getInstance() {
+        ProductFactory result = instance;
+        if (result == null) {
+            synchronized (ProductFactory.class) {
+                result = instance;
+                if (result == null) {
+                    instance = new ProductFactory();
+                }
+            }
+        }
+        return instance;
+    }
 
     public AbstractProduct createProduct(String name){
         return (AbstractProduct) registry.get(name).createProduct();

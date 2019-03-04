@@ -15,9 +15,15 @@ public class AF {
 
     public static void main(String [] args){
         Client myClient = new Client();
-        ProductFactory PF = new ProductFactory();
-        Product PFC = PF.createProduct("ProductC");
+
+        ProductFactory instance = ProductFactory.getInstance();
         myClient.foo();
-        System.out.println(PFC.getClass().getCanonicalName());
+        Product PA = instance.createProduct("ProductA");
+        Product PB = instance.createProduct("ProductB");
+        Product PC = instance.createProduct("ProductC");
+        PA.foo();
+        PB.foo();
+        PC.foo();
+
     }
 }
